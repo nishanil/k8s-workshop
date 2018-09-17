@@ -1,15 +1,14 @@
 version: '3.4'
 
 services:
-  k8s-todo-api:
-    image: ${DOCKER_REGISTRY}k8stodoapi
+  todoapi:
+    image: todoapi
     build:
       context: .
-      dockerfile: k8s-todo-api/Dockerfile
+      dockerfile: todoapi/Dockerfile
 
-  k8s-todo-web:
-    image: ${DOCKER_REGISTRY}k8stodoweb
+  todoweb:
+    image: todoweb
     build:
       context: .
-      dockerfile: k8s-todo-web/Dockerfile
-
+      dockerfile: todoweb/Dockerfile
