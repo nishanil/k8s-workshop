@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+    <DockerTargetOS>Linux</DockerTargetOS>
+    <UserSecretsId>450d2f96-e29c-4b20-a25e-7b3475ffdd4d</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,13 +14,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.1916590" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="Controllers\ValuesController.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Dockerfile" />
   </ItemGroup>
 </Project>

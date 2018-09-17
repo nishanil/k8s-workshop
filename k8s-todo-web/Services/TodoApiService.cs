@@ -36,7 +36,7 @@ namespace k8stodo.Services
 
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri($"http://{endpoint}")
+                BaseAddress = new Uri($"https://{endpoint}")
             };
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Add("ContentType", "application/json");
