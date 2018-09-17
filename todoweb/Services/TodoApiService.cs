@@ -34,13 +34,24 @@ namespace k8stodo.Services
             var endpoint = string.IsNullOrWhiteSpace(todoServiceOptions?.Value?.EndpointUri) ?
                           DefaultBaseAddress : todoServiceOptions.Value.EndpointUri;
 
-            _httpClient = new HttpClient
+            //HACk: For local https support.
+            var handler = new HttpClientHandler
             {
-                BaseAddress = new Uri($"http://{endpoint}")
+                ClientCertificateOptions = ClientCertificateOption.Manual,
+                ServerCertificateCustomValidationCallback =
+                (httpRequestMessage, cert, cetChain, policyErrors) =>
+                {
+                    return true;
+                }
+            };
+            _httpClient = new HttpClient(handler)
+            {
+                BaseAddress = new Uri($"https://{endpoint}")
             };
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Add("ContentType", "application/json");
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            
         }
 
         /// <summary>

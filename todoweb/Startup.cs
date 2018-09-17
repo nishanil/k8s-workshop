@@ -49,10 +49,10 @@ namespace k8s_todo_web
             else
             {
                 app.UseExceptionHandler("/Error");
-               // app.UseHsts();
+                app.UseHsts();
             }
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 

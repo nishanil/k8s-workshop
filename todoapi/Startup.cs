@@ -44,14 +44,14 @@ namespace k8s_todo_api
             }
             else
             {
-             //   app.UseHsts();
+                app.UseHsts();
             }
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Todo API v1");
             });
-           // app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
