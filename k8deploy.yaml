@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todoapi
+  labels:
+    app: todoapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todoapi
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: todoapi
+    spec:
+      containers:
+      - name: todoapi
+        image: helloaksacr.azurecr.io/todoapi:v1
+        ports:
+        - containerPort: 5000
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          valueFrom:
+            configMapKeyRef:
+              name: todo-configmap
+              key: aspNetCoreEnvironment
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todoapi
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: todoapi
